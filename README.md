@@ -1,32 +1,73 @@
-# 🛒 Olist E-Commerce Sales & Customer Analytics
+# 🛒 Olist E-commerce SQL Analysis
 
 ## 📌 Project Overview
 
-This project analyzes e-commerce sales, customer behavior, product performance, geographic trends, seller performance, logistics, and customer satisfaction using SQL.
+This project analyzes the Olist Brazilian e-commerce dataset using MySQL to uncover insights into sales performance, customer behavior, product performance, geographic trends, delivery operations, seller performance, and customer satisfaction.
 
-The analysis was conducted using the Olist e-commerce dataset and MySQL.
-
-The objective was to transform raw transactional data into actionable business insights that could help an e-commerce marketplace improve revenue, customer retention, product performance, and delivery operations.
+The analysis demonstrates practical SQL skills including data exploration, aggregation, joins, Common Table Expressions (CTEs), date functions, conditional logic, and business-focused analysis.
 
 ---
 
-## 🎯 Business Questions
+## 🎯 Business Objectives
 
-The analysis focuses on the following business questions:
+The analysis aims to answer key business questions:
 
-1. How is revenue changing over time?
-2. Which product categories generate the most revenue?
-3. Which products generate the highest revenue?
-4. How frequently do customers make repeat purchases?
-5. Who are the highest-spending customers?
-6. Which states generate the most orders and revenue?
-7. Which states have the highest average order values?
-8. How long does it take to deliver orders?
-9. Which states experience the highest delivery delays?
-10. Which sellers generate the most revenue?
-11. Which sellers have the fastest and slowest delivery performance?
-12. What is the overall customer review distribution?
-13. Is there an observable relationship between delivery performance and customer satisfaction?
+- How has revenue changed over time?
+- Which product categories generate the most revenue?
+- Which products sell the most?
+- Which states generate the most orders and revenue?
+- How do customer purchasing patterns differ?
+- What percentage of orders are delivered late?
+- Which sellers generate the most revenue?
+- Does delivery performance affect customer satisfaction?
+
+---
+
+## 🗄️ Dataset
+
+The project uses the **Brazilian E-Commerce Public Dataset by Olist**.
+
+The dataset contains information about:
+
+- Customers
+- Orders
+- Order items
+- Products
+- Sellers
+- Payments
+- Reviews
+- Product categories
+- Customer locations
+
+The analysis covers orders placed between **September 2016 and October 2018**.
+
+---
+
+## 🛠️ Tools & Technologies
+
+- **MySQL**
+- SQL
+- MySQL Workbench
+- GitHub
+
+### SQL techniques used
+
+- `SELECT`
+- `WHERE`
+- `GROUP BY`
+- `ORDER BY`
+- `HAVING`
+- `JOIN`
+- `CASE`
+- Aggregate functions
+- Common Table Expressions (CTEs)
+- Date functions
+- `COUNT`
+- `SUM`
+- `AVG`
+- `ROUND`
+- `DATEDIFF`
+- `DATE_FORMAT`
 
 ---
 
@@ -34,400 +75,228 @@ The analysis focuses on the following business questions:
 
 | KPI | Result |
 |---|---:|
-| Total Revenue | **2,002,152.76** |
-| Total Orders | **12,291** |
-| Total Customers | **12,238** |
-| Average Order Value | **162.90** |
-| Repeat Customer Rate | **0.42%** |
-| One-Time Customer Rate | **99.58%** |
-| Average Delivery Time | **12.50 days** |
-| On-Time Delivery Rate | **91.85%** |
-| Late Delivery Rate | **8.15%** |
-| Average Review Score | **4.02 / 5** |
-| Revenue Growth 2017–2018 | **24.75%** |
+| Total Orders | 99,441 |
+| Delivered Orders | 96,477 |
+| Unique Customers | 93,357 |
+| Delivered-Order Revenue | 15,422,461.77 |
+| Average Order Value | 159.86 |
+| Average Delivery Time | 12.50 days |
+| Late Delivery Rate | 8.11% |
+
+> **Note:** Revenue and AOV in the KPI table are based on delivered orders. Other analyses may use the full order dataset depending on the business question.
 
 ---
 
-# 📈 1. Revenue Analysis
+# 🔎 Key Findings
 
-Revenue increased substantially during the period covered by the dataset.
+## 💰 Sales Performance
+
+Revenue increased significantly between 2017 and 2018.
 
 | Year | Revenue |
 |---|---:|
-| 2016 | 6,848.64 |
-| 2017 | 887,777.61 |
-| 2018 | 1,107,526.51 |
+| 2016 | 59,362.34 |
+| 2017 | 7,249,746.73 |
+| 2018 | 8,699,763.05 |
 
-Revenue increased by approximately **24.75% from 2017 to 2018**.
-
-The highest full month in the dataset was **May 2018**, generating:
-
-**160,565.15**
-
-November 2017 was the second-highest month with:
-
-**153,822.97**
-
-### Insight
-
-> Revenue demonstrated strong growth from 2017 to 2018, increasing by 24.75%. However, partial periods at the beginning and end of the dataset should be considered when interpreting monthly performance.
+The monthly analysis shows strong growth throughout 2017 and 2018, with November 2017 being a particularly strong month.
 
 ---
 
-# 👥 2. Customer Analysis
+## 👥 Customer Analysis
 
-Customer purchase frequency revealed a significant retention challenge.
+The customer analysis shows that the majority of customers made only one purchase.
 
-### Customer Frequency
+### Customer frequency
 
-- **12,187 customers** made one purchase
-- **50 customers** made two purchases
-- **1 customer** made four purchases
-- **51 repeat customers** in total
-- **99.58%** of customers were one-time purchasers
-- **0.42%** were repeat customers
+- One-time customers: **93,099**
+- Customers with 2 orders: **2,745**
+- Customers with 3 orders: **203**
+- Customers with 4 orders: **30**
 
-### Insight
+There were **2,997 repeat customers** in the analysis.
 
-> Customer retention is extremely low, with 99.58% of customers making only one purchase. This represents a significant opportunity to increase customer lifetime value through loyalty programs, personalized recommendations, and targeted post-purchase marketing.
+### Customer spending
 
----
+| Customer Type | Customers | Average Spend | Total Revenue |
+|---|---:|---:|---:|
+| One-time | 93,098 | 161.82 | 15,064,849.41 |
+| Repeat | 2,997 | 314.99 | 944,022.71 |
 
-# 💰 3. Customer Spending
+Repeat customers had an average spend of approximately **315**, almost twice the average spend of one-time customers.
 
-The top 10 highest-spending customers were all one-time purchasers.
+### Business Insight
 
-The highest-spending customer generated:
-
-**6,726.66**
-
-from a single order.
-
-### Insight
-
-> High customer spending does not necessarily translate into customer loyalty. High-value one-time customers represent a potential target group for retention campaigns.
+Customer retention represents an important growth opportunity. Increasing repeat purchases could potentially increase customer lifetime value and revenue.
 
 ---
 
-# 🛍️ 4. Product Category Analysis
+# 📦 Product Analysis
 
-### Top Revenue-Generating Categories
+Several product categories performed strongly across sales and revenue.
 
-| Category | Revenue |
+### Top categories by allocated revenue
+
+| Category | Allocated Revenue |
 |---|---:|
-| beleza_saude | **225,255.10** |
-| relogios_presentes | **199,901.43** |
-| cama_mesa_banho | **178,072.51** |
-| esporte_lazer | **172,505.76** |
-| informatica_acessorios | **164,966.29** |
+| beleza_saude | 258,385.79 |
+| relogios_presentes | 217,319.41 |
+| cama_mesa_banho | 214,332.92 |
+| esporte_lazer | 202,319.88 |
+| informatica_acessorios | 192,796.58 |
 
-The **beleza_saude** category generated the highest revenue.
+The `beleza_saude` category generated the highest allocated revenue in the analysis.
 
-### Insight
+### Top-selling products
 
-> A relatively small group of product categories accounts for a substantial portion of marketplace revenue. These high-performing categories could receive greater inventory, marketing, and promotional attention.
+The product analysis also identified products with high sales volumes and products generating high revenue, allowing the business to distinguish between:
 
----
-
-# 📦 5. Product Performance
-
-The analysis also examined products based on units sold and total revenue.
-
-The highest-revenue product generated:
-
-**13,440**
-
-from **8 units sold**.
-
-Another product generated:
-
-**11,805**
-
-from **36 units sold**.
-
-### Insight
-
-> Product revenue is influenced by both sales volume and product value. Products with lower sales volume can still generate significant revenue when their average selling value is high.
+- High-volume products
+- High-value products
+- High-priced products
 
 ---
 
-# 🌎 6. Geographic Analysis
+# 🌎 Geographic Analysis
 
-São Paulo was the strongest market by order volume and revenue.
+São Paulo (`SP`) was the dominant market.
 
-### Top States by Revenue
+### Orders by state
 
-| State | Orders | Revenue |
-|---|---:|---:|
-| SP | 5,180 | **762,042.63** |
-| RJ | 1,652 | **281,004.51** |
-| MG | 1,387 | **216,537.12** |
-| PR | 616 | **109,569.82** |
-| RS | 655 | **104,476.36** |
+| State | Orders |
+|---|---:|
+| SP | 5,180 |
+| RJ | 1,652 |
+| MG | 1,387 |
+| RS | 655 |
+| PR | 616 |
 
-### Insight
+São Paulo generated approximately **762,042.63** in revenue and had the largest number of orders.
 
-> São Paulo was the dominant market, generating 762,042.63 in revenue. However, smaller markets demonstrated higher average order values, indicating that market size does not necessarily correspond to customer spending per transaction.
+Interestingly, some states with fewer orders recorded substantially higher average order values.
 
----
+### Business Insight
 
-# 💳 7. Average Order Value by State
-
-The highest average order value was observed in:
-
-**Paraíba (PB) — 276.13**
-
-Other high-value markets included:
-
-- Maranhão — 257.12
-- Pará — 237.94
-- Rondônia — 236.90
-- Sergipe — 227.54
-
-São Paulo had an average order value of:
-
-**147.11**
-
-### Insight
-
-> Smaller markets can have substantially higher average order values than the largest market, creating opportunities for targeted premium-product strategies.
+The large concentration of orders and revenue in São Paulo suggests that it is a critical market for Olist. However, smaller markets with higher AOVs may also represent opportunities for targeted growth strategies.
 
 ---
 
-# 🚚 8. Delivery Performance
+# 🚚 Delivery Analysis
 
-The overall average delivery time was:
+The overall average delivery time was approximately:
 
 **12.50 days**
 
-### Delivery Status
+### Delivery performance
 
-| Status | Orders |
+| Delivery Status | Orders |
 |---|---:|
-| On Time | 11,289 |
-| Late | 1,002 |
+| On Time | 88,652 |
+| Late | 7,826 |
 
-This corresponds to:
+The late-delivery rate was approximately:
 
-- **91.85% on-time delivery**
-- **8.15% late delivery**
+**8.11%**
 
-### Insight
+### Geographic differences
 
-> Although most orders were delivered on time, more than 1,000 orders experienced delays, highlighting an opportunity to improve logistics performance.
+Delivery performance varied considerably by state.
+
+Some states experienced average delivery times above 20 days, while São Paulo averaged approximately 8.73 days.
+
+### Business Insight
+
+Delivery performance varies significantly by geography, suggesting that logistics infrastructure, distance, and regional fulfillment capabilities may influence customer experience.
 
 ---
 
-# 🗺️ 9. Delivery Performance by State
+# 🏪 Seller Analysis
 
-Average delivery times varied significantly across states.
+The seller analysis examined:
 
-### Slowest Average Delivery Times
+- Revenue
+- Orders
+- Items sold
+- Average delivery time
 
-| State | Average Delivery |
+### Top sellers by revenue
+
+The highest-performing seller generated approximately **47,594.72** in product revenue.
+
+Other high-performing sellers generated between approximately **25,000 and 37,000** in revenue.
+
+The analysis also revealed differences in seller delivery performance.
+
+### Business Insight
+
+Seller performance should not be evaluated using revenue alone. High-revenue sellers should also be monitored for delivery performance because operational issues can affect customer satisfaction.
+
+---
+
+# ⭐ Customer Satisfaction
+
+Customer reviews were analyzed using review scores from 1 to 5.
+
+### Review score distribution
+
+| Review Score | Reviews |
 |---|---:|
-| AL | **25.49 days** |
-| AP | **25.00 days** |
-| RR | **25.00 days** |
-| PA | **24.28 days** |
-| AM | **24.21 days** |
-
-### Fastest
-
-São Paulo had an average delivery time of:
-
-**8.73 days**
-
-### Insight
-
-> Delivery performance varies considerably by geography. Some states experience delivery times almost three times longer than São Paulo, suggesting that regional logistics infrastructure and shipping distance may require further investigation.
-
----
-
-# ⚠️ 10. Late Delivery Rate by State
-
-The highest late-delivery rates were:
-
-| State | Late Delivery Rate |
-|---|---:|
-| AL | **31.37%** |
-| MA | **23.86%** |
-| PI | **22.22%** |
-| TO | **18.75%** |
-| BA | **16.59%** |
-
-São Paulo recorded a late-delivery rate of:
-
-**5.85%**
-
-### Insight
-
-> Delivery reliability varies substantially across states. High-delay regions should be prioritized for logistics optimization and seller/shipping performance monitoring.
-
----
-
-# 🏪 11. Seller Performance
-
-The top seller by revenue generated:
-
-**47,594.72**
-
-from:
-
-- 74 orders
-- 85 items
-
-### Important finding
-
-High order volume did not necessarily correspond to the highest revenue.
-
-For example, one seller generated more revenue from significantly fewer orders than other high-volume sellers.
-
-### Insight
-
-> Seller revenue performance depends on both transaction volume and product value. Seller performance should therefore be evaluated using multiple metrics rather than order volume alone.
-
----
-
-# ⚡ 12. Seller Delivery Performance
-
-Among sellers with at least 20 delivered orders:
-
-### Fastest Seller
-
-**8.29 days**
-
-### Slowest Seller
-
-**24.50 days**
-
-This represents a difference of more than **16 days** in average delivery time.
-
-### Insight
-
-> Seller logistics performance varies substantially. High-revenue sellers should therefore be evaluated not only on sales performance but also on delivery efficiency.
-
----
-
-# ⭐ 13. Customer Satisfaction
-
-The available review dataset contained:
-
-**279 unique reviews**
-
-### Review Distribution
-
-| Score | Reviews |
-|---:|---:|
 | 5 | 164 |
 | 4 | 39 |
 | 3 | 30 |
 | 2 | 8 |
 | 1 | 38 |
 
-The average review score was approximately:
+### Delivery vs Review Score
 
-**4.02 / 5**
-
-### Insight
-
-> Overall customer satisfaction was positive, with an average rating of 4.02/5 and nearly 59% of available reviews receiving five stars.
-
-### Data Limitation
-
-The review table available for this analysis contained only 279 reviewed orders compared with the much larger order dataset. Therefore, review-related findings should not be interpreted as representative of all customers.
-
----
-
-# 🚚⭐ 14. Delivery vs Customer Satisfaction
-
-Among the reviewed orders that could be matched to delivery status:
-
-| Delivery Status | Reviews | Average Rating |
+| Delivery Status | Reviews | Average Review |
 |---|---:|---:|
-| On Time | 40 | **4.28** |
-| Late | 1 | **1.00** |
+| On Time | 246 | 4.24 |
+| Late | 24 | 2.50 |
 
-The late order received a one-star review.
+Late deliveries were associated with substantially lower customer review scores.
 
-However, because only **one late order** was included in this comparison, there is insufficient evidence to establish a statistically reliable relationship between late deliveries and customer satisfaction.
+The difference between the two groups was **1.74 rating points**.
 
-### Insight
-
-> The available sample suggests that delivery delays may be associated with lower customer satisfaction, but the sample size is too small to support a definitive conclusion.
+> This result indicates an association between delivery performance and customer satisfaction; it does not by itself prove that late delivery causes lower ratings.
 
 ---
 
 # 💡 Business Recommendations
 
-Based on the analysis, the following actions could improve marketplace performance:
+Based on the analysis, the following actions could improve e-commerce performance:
 
 ### 1. Improve customer retention
 
-With **99.58% of customers making only one purchase**, retention should be a major strategic priority.
+The large number of one-time customers suggests an opportunity to increase repeat purchases through:
 
-Possible strategies include:
-
+- Personalized promotions
+- Product recommendations
 - Loyalty programs
-- Personalized product recommendations
-- Post-purchase email campaigns
-- Discounts for second purchases
-- Targeted campaigns for high-value customers
+- Post-purchase engagement
 
-### 2. Focus on high-performing categories
+### 2. Improve delivery performance
 
-Categories such as `beleza_saude`, `relogios_presentes`, and `cama_mesa_banho` generated significant revenue and should receive careful inventory and marketing attention.
+The **8.11% late-delivery rate** indicates room for improvement.
 
-### 3. Improve regional logistics
+The business could investigate:
 
-States with high delivery times and late-delivery rates should be prioritized for logistics optimization.
+- Regional logistics performance
+- Seller fulfillment times
+- Delivery partners
+- High-delay geographic areas
+
+### 3. Prioritize high-performing categories
+
+Categories such as `beleza_saude`, `relogios_presentes`, and `cama_mesa_banho` generated substantial revenue and could receive additional marketing attention.
 
 ### 4. Monitor seller performance
 
-Seller evaluation should combine:
+Seller performance should be evaluated using both revenue and operational metrics such as delivery time.
 
-- Revenue
-- Order volume
-- Items sold
-- Delivery time
-- Delivery reliability
+### 5. Focus on customer experience
 
-### 5. Target high-value one-time customers
-
-High-spending customers who have made only one purchase represent an opportunity for targeted retention campaigns.
-
-### 6. Investigate customer complaints
-
-Although the overall review score is positive, the presence of one- and two-star reviews indicates areas where customer experience can be improved.
-
----
-
-# 🛠️ Tools & Technologies
-
-- **MySQL**
-- **SQL**
-- **GitHub**
-- Olist E-Commerce Dataset
-
-### SQL Techniques Used
-
-- SELECT
-- WHERE
-- GROUP BY
-- ORDER BY
-- HAVING
-- CASE statements
-- JOINs
-- Subqueries
-- Aggregate functions
-- COUNT
-- SUM
-- AVG
-- ROUND
-- COUNT DISTINCT
-- DATE_FORMAT
-- YEAR
-- DATEDIFF
+Because late orders were associated with significantly lower review scores, improving delivery reliability could contribute to better customer satisfaction.
 
 ---
 
@@ -438,14 +307,12 @@ olist-ecommerce-sql-analysis/
 │
 ├── README.md
 │
-├── sql/
-│   ├── 01_data_exploration.sql
-│   ├── 02_customer_analysis.sql
-│   ├── 03_revenue_analysis.sql
-│   ├── 04_product_analysis.sql
-│   ├── 05_geographic_analysis.sql
-│   ├── 06_logistics_analysis.sql
-│   ├── 07_seller_analysis.sql
-│   └── 08_customer_satisfaction.sql
-│
-└── screenshots/
+└── sql/
+    ├── 01_data_exploration.sql
+    ├── 02_customer_analysis.sql
+    ├── 03_sales_analysis.sql
+    ├── 04_product_analysis.sql
+    ├── 05_geographic_analysis.sql
+    ├── 06_delivery_analysis.sql
+    ├── 07_seller_analysis.sql
+    └── 08_customer_satisfaction.sql

@@ -1,0 +1,19 @@
+# Data files
+*.csv
+*.xlsx
+*.xls
+
+# MySQL files
+*.sql.gz
+
+# Temporary files
+*.tmp
+*.temp
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/

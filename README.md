@@ -316,3 +316,84 @@ olist-ecommerce-sql-analysis/
     ├── 06_delivery_analysis.sql
     ├── 07_seller_analysis.sql
     └── 08_customer_satisfaction.sql
+---
+
+## 📊 Key Results
+
+| Metric | Result |
+|---|---:|
+| Total Orders | 96,477 |
+| Total Customers | 93,357 |
+| Total Revenue | R$15.42M |
+| Average Order Value | R$159.86 |
+| Average Delivery Time | 12.50 days |
+| Late Delivery Rate | 8.11% |
+| Delivered Orders | 96,478 |
+
+### 💰 Revenue Growth
+
+Revenue increased substantially over the period analyzed:
+
+- **2016:** R$59,362.34
+- **2017:** R$7.25M
+- **2018:** R$8.70M
+
+**2018 was the strongest full year by revenue.**
+
+### 👥 Customer Insights
+
+- 93,098 customers were classified as one-time customers.
+- 2,997 customers were repeat customers.
+- Repeat customers spent an average of **R$314.99**, compared with **R$161.82** for one-time customers.
+- Customer retention therefore represents an important growth opportunity.
+
+### 🛍️ Product Insights
+
+The highest-revenue product categories included:
+
+1. `beleza_saude` — R$258,385.79
+2. `relogios_presentes` — R$217,319.41
+3. `cama_mesa_banho` — R$214,332.92
+4. `esporte_lazer` — R$202,319.88
+5. `informatica_acessorios` — R$192,796.58
+
+### 🚚 Delivery Insights
+
+- **88,652** orders were delivered on time.
+- **7,826** orders were delivered late.
+- Late deliveries represented approximately **8.11%** of delivered orders.
+- On-time deliveries had an average review score of **4.24**.
+- Late deliveries had an average review score of **2.50**.
+
+This indicates that delivery performance is closely associated with customer satisfaction.
+
+### 💡 Business Recommendations
+
+- Increase repeat purchases through customer retention strategies.
+- Improve logistics to reduce late deliveries.
+- Monitor seller performance using revenue, order volume, delivery time, and reviews.
+- Focus marketing efforts on high-performing product categories.
+- Investigate causes of late deliveries and their impact on customer satisfaction.
+
+---
+
+## 📁 Project Structure
+
+```text
+olist-ecommerce-sql-analysis/
+│
+├── sql/
+│   ├── 01_data_exploration.sql
+│   ├── 02_customer_analysis.sql
+│   ├── 03_revenue_analysis.sql
+│   ├── 04_product_analysis.sql
+│   ├── 05_geographic_analysis.sql
+│   ├── 06_delivery_analysis.sql
+│   ├── 07_seller_analysis.sql
+│   ├── 08_customer_satisfaction.sql
+│   │
+│   └── results/
+│       ├── .gitignore
+│       └── key_findings.md
+│
+└── README.md

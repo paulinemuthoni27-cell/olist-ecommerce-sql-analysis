@@ -318,6 +318,9 @@ olist-ecommerce-sql-analysis/
     └── 08_customer_satisfaction.sql
 ---
 
+]
+---
+
 ## 📊 Key Results
 
 | Metric | Result |

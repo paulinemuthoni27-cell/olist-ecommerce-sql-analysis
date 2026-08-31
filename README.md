@@ -332,6 +332,19 @@ olist-ecommerce-sql-analysis/
 | Average Delivery Time | 12.50 days |
 | Late Delivery Rate | 8.11% |
 | Delivered Orders | 96,478 |
+## 📊 Visual Analysis
+
+### Revenue Growth
+
+![Revenue by Year](sql/results/charts/olist_revenue_by_year.png)
+
+### Customer Distribution
+
+![Customer Types](sql/results/charts/olist_customer_types.png)
+
+### Delivery and Customer Satisfaction
+
+![Delivery Status vs Review Score](sql/results/charts/olist_delivery_review_score.png)
 
 ### 💰 Revenue Growth
 
